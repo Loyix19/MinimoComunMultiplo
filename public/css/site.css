@@ -1,0 +1,235 @@
+/* ==================================== */
+/* 1. Reset Básico y Estilo TRON */
+/* ==================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Colores NEÓN Intenso */
+:root {
+    --bg-dark: #000000;         /* Fondo negro puro */
+    --bg-layer: #0f0f0f;        /* Fondo de capas ligeramente menos oscuro */
+    --neon-blue: #00FFFF;       /* Cian eléctrico/Azul neón (más brillante que el anterior) */
+    --neon-pink: #FF00FF;       /* Magenta eléctrico/Rosa neón */
+    --text-light: #E0FFFF;      /* Texto casi blanco con tinte azul */
+    --border-dark: #222222;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    padding: 0 10px 20px 10px;
+}
+
+/* Estilo para todo el texto que debe brillar */
+h1, h2, h3, .result-mcm, #score-area span {
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+/* ==================================== */
+/* 2. Encabezado (Header) y Título */
+/* ==================================== */
+
+#header {
+    background-color: var(--bg-dark);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--neon-blue); /* Línea más gruesa */
+    margin-bottom: 20px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.7); /* Resplandor más fuerte y brillante */
+}
+
+#logo {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 0 8px var(--neon-blue));
+    margin-bottom: 5px;
+}
+
+#header h1 {
+    font-size: 2.2em;
+    text-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-blue);
+}
+
+#header h6 {
+    opacity: 0.6;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-dark);
+    margin: 30px 0;
+}
+
+/* ==================================== */
+/* 3. Menú Principal (Navegación) */
+/* ==================================== */
+
+#main-menu {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.menu-btn {
+    background: var(--bg-layer);
+    color: var(--text-light);
+    border: 1px solid var(--neon-blue);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    flex-grow: 1;
+    text-shadow: 0 0 5px var(--neon-blue);
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.menu-btn.active {
+    background-color: var(--neon-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px var(--neon-blue);
+    border-color: white;
+    text-shadow: none; /* Quitamos el neón azul del texto activo para contraste */
+}
+
+/* ==================================== */
+/* 4. Estilo de Secciones de la Lección */
+/* ==================================== */
+
+.lesson-section {
+    background: var(--bg-layer); 
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4); /* Resplandor rosa más fuerte */
+}
+
+.lesson-section.hidden {
+    display: none;
+}
+
+.lesson-section h2 {
+    color: var(--neon-pink);
+    border-bottom: 2px solid var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink); /* Neón rosa en títulos */
+}
+
+.lesson-section h3 {
+    color: var(--neon-blue);
+    text-shadow: 0 0 8px var(--neon-blue);
+}
+
+.lesson-section li {
+    background: #1a1a1a;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-left: 5px solid var(--neon-blue);
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+/* ==================================== */
+/* 5. Elementos Interactivos y Ejemplo */
+/* ==================================== */
+
+.interactive-example, .example-area {
+    background: #222222;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px dashed var(--neon-pink);
+    margin: 15px 0;
+}
+
+.result-mcm {
+    font-weight: bold;
+    color: var(--neon-blue); 
+    font-size: 1.1em;
+    text-shadow: 0 0 10px var(--neon-blue); /* Resultado con brillo fuerte */
+}
+
+/* ==================================== */
+/* 6. Sección de Ejercicios (Gamificación) */
+/* ==================================== */
+
+#challenge-area {
+    text-align: center;
+    padding: 25px;
+    border: 3px solid var(--neon-pink);
+    border-radius: 15px;
+    box-shadow: 0 0 30px var(--neon-pink); /* Borde y resplandor MÁXIMO */
+}
+
+#challenge-area strong {
+    color: var(--neon-blue);
+    font-size: 2em;
+    margin: 0 15px;
+    text-shadow: 0 0 15px var(--neon-blue);
+}
+
+input[type="number"] {
+    padding: 12px;
+    margin: 15px 0;
+    border: 2px solid var(--neon-blue);
+    border-radius: 8px;
+    max-width: 220px;
+    font-size: 1.1em;
+    background-color: #000;
+    color: var(--neon-pink); /* El input usa el color contrario (rosa) */
+    box-shadow: 0 0 10px var(--neon-blue);
+}
+
+button#check-button {
+    background-color: var(--neon-pink); 
+    color: var(--bg-dark);
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0 0 15px var(--neon-pink);
+    transition: all 0.3s ease;
+}
+
+button#check-button:hover {
+    background-color: #FF22FF; /* Rosa más intenso al pasar el ratón */
+    box-shadow: 0 0 25px var(--neon-pink);
+}
+
+#feedback-message {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 20px; 
+    /* El JS manejará el text-shadow aquí para el feedback */
+}
+
+#score-area {
+    margin-top: 25px;
+    font-size: 1.4em;
+    color: var(--neon-blue);
+    text-shadow: 0 0 12px var(--neon-blue);
+}
+
+/* ==================================== */
+/* 7. Diseño Responsivo */
+/* ==================================== */
+
+@media (min-width: 600px) {
+    body {
+        padding: 0 40px 40px 40px;
+    }
+    #header, .lesson-section, #main-menu {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

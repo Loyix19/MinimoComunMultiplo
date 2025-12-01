@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>MCM Quest: Mínimo Común Múltiplo</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Merriweather" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/site.css">
+    
+    <meta name="theme-color" content="#4A90E2">
+    <link rel="manifest" href="./manifest.json">
+</head>
+
+<body>
+    <div id="header">
+        <img id="logo" src="./images/math_icon.svg" alt="Ícono de Matemáticas" />
+        <h1>MCM Quest</h1>
+        <h6>El Punto de Encuentro Numérico</h6>
+    </div>
+
+    <nav id="main-menu">
+        <button data-target="intro" class="menu-btn">🎯 ¿Qué es el MCM?</button>
+        <button data-target="ejemplos" class="menu-btn">💡 Ejemplos</button>
+        <button data-target="ejercicios" class="menu-btn">🕹️ Ejercicios</button>
+    </nav>
+    
+    <hr>
+
+    <section id="intro" class="lesson-section"> 
+        <h2>🎯 1. La Misión: ¿Qué es el MCM?</h2>
+        <p>El **Mínimo Común Múltiplo (MCM)** es el número más pequeño que dos o más números tienen en común en sus listas de múltiplos. ¡Es el punto donde sus caminos se cruzan por primera vez!</p>
+        
+        <h3>Conceptos Clave:</h3>
+        <ul>
+            <li>**Múltiplo:** Es el resultado de multiplicar un número por cualquier entero (piénsalo como los "saltos" de un número en la recta).</li>
+            <li>**Común:** Un múltiplo que **comparten** dos o más números.</li>
+            <li>**MCM:** El *salto más corto* que les permite coincidir a todos.</li>
+        </ul>
+        
+        <div class="interactive-example">
+            <h4>Explorador de Múltiplos</h4>
+            <label for="num-mult-1">Ver Múltiplos del Número:</label>
+            <input type="number" id="num-mult-1" value="4" min="2" max="15">
+            <p id="multiples-list">M(4): 4, 8, 12, 16, 20, 24, ...</p>
+            <small>Usa este explorador para ver cómo "saltan" los números.</small>
+        </div>
+    </section>
+
+    <section id="ejemplos" class="lesson-section hidden"> 
+        <h2>💡 2. ¡A la Práctica! (Método Pro)</h2>
+        <p>Para números grandes, usamos el **Método de Factorización Prima**. ¡Es la forma más rápida de encontrar la coincidencia!</p>
+
+        <h3>Pasos de la Factorización:</h3>
+        <ol>
+            <li><strong>Descomposición:</strong> Descompón cada número en sus **factores primos**. 
+
+[Image of Prime factorization for finding LCM]
+</li>
+            <li><strong>Selección:</strong> Elige **TODOS** los factores primos que aparecieron (ej. 2, 3, 5).</li>
+            <li><strong>Máximo Exponente:</strong> Para cada factor, toma el que tenga el **mayor exponente**.</li>
+            <li><strong>Multiplicación:</strong> Multiplica los factores seleccionados para obtener el MCM.</li>
+        </ol>
+        <div class="example-area">
+            <h4>Ejemplo de Matriz: MCM de 12 y 18</h4>
+            <p>Factorización:</p>
+            <p>12 = 2<sup>2</sup> &times; 3<sup>1</sup></p> 
+            <p>18 = 2<sup>1</sup> &times; 3<sup>2</sup></p>
+    
+            <p class="result-mcm">Factores con mayor exponente: 2<sup>2</sup> y 3<sup>2</sup></p>
+    
+            <p class="result-mcm">
+                MCM(12, 18) = 2<sup>2</sup> &times; 3<sup>2</sup> = 4 &times; 9 = 
+                <strong style="text-shadow: 0 0 10px #00FFFF;">36</strong>
+            </p>
+</div>
+    </section>
+
+    <section id="ejercicios" class="lesson-section hidden"> 
+        <h2>🕹️ 3. Tu Misión (Desafío Aleatorio)</h2>
+        <p>¡El sistema de desafíos está activado! Resuelve los problemas para ganar puntos.</p>
+        
+        <div id="challenge-area">
+            <h3>Desafío #<span id="challenge-number">1</span></h3>
+            <p>Encuentra el MCM de: <strong id="num-a">?</strong> y <strong id="num-b">?</strong></p>
+            <input type="number" id="user-answer" placeholder="Introduce el MCM aquí">
+            <button id="check-button">Comprobar Resultado</button>
+            <p id="feedback-message">¡A calcular!</p>
+        </div>
+        
+        <div id="score-area">
+            <p>Puntuación Total: <span id="score">0</span></p>
+        </div>
+    </section>
+    <hr>
+    
+    <script async src="./js/main.js"></script>
+    
+    <script>
+        var endpoint;
+        var key;
+        var authSecret;
+        // Variables para almacenar los datos de la suscripción a notificaciones push
+
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding)
+                .replace(/\-/g, '+')
+                .replace(/_/g, '/');
+
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+
+        function determineAppServerKey() {
+            var vapidPublicKey = 'BAyb_WgaR0L0pODaR7wWkxJi__tWbM1MPBymyRDFEGjtDCWeRYS9EF7yGoCHLdHJi6hikYdg4MuYaK0XoD0qnoY'; 
+            return urlBase64ToUint8Array(vapidPublicKey);
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(function(registration) {
+                return registration.pushManager.getSubscription()
+                    .then(function(subscription) {
+                        if (subscription) {
+                            return;
+                        }
+
+                        return registration.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: determineAppServerKey()
+                        })
+                        .then(function(subscription) {
+                            var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+                            key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';
+
+                            var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+                            authSecret = rawAuthSecret ?
+                                btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';
+
+                            endpoint = subscription.endpoint;
+
+                            // Envía los datos al servidor para que pueda notificar
+                            return fetch('http://localhost:3111/register', {
+                                method: 'post',
+                                headers: new Headers({
+                                    'content-type': 'application/json'
+                                }),
+                                body: JSON.stringify({
+                                    endpoint: subscription.endpoint,
+                                    key: key,
+                                    authSecret: authSecret,
+                                }),
+                            })
+                            .then(response => {
+                                console.log('Registro de Push exitoso:', response);
+                            });
+                        });
+                    });
+                }).catch(function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+            });
+        }
+    </script>
+</body>
+
+</html>

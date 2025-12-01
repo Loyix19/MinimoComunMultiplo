@@ -1,0 +1,24 @@
+{
+  "name": "mcm-quest-pwa",
+  "version": "1.0.0",
+  "description": "PWA educativa sobre el Mínimo Común Múltiplo con Push Notifications.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "pwa",
+    "web-push",
+    "express",
+    "mcm",
+    "educacion"
+  ],
+  "author": "Tu Nombre",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "node-schedule": "^2.1.1",
+    "web-push": "^3.6.7"
+  }
+}
